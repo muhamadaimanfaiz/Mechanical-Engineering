@@ -10,20 +10,28 @@ toggle.addEventListener('click', () => {
 });
 links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('is-open')));
 
-// ---------- Section switcher (Projects / Experience / Skills) ----------
-const views = document.querySelectorAll('.view');
-const switchBtns = document.querySelectorAll('.switcher button');
-function showView(name, scroll) {
-  if (!document.getElementById('view-' + name)) return false;
-  views.forEach(v => v.classList.toggle('is-active', v.id === 'view-' + name));
-  switchBtns.forEach(b => b.classList.toggle('is-active', b.dataset.view === name));
-  if (scroll) document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
-  return true;
+// ---------- Photo placeholders ----------
+// If an <img data-placeholder="..."> file doesn't exist yet, show a friendly placeholder box instead.
+function makePlaceholder(img) {
+  const ph = document.createElement('div');
+  ph.className = 'ph ' + img.className;
+  ph.textContent = img.dataset.placeholder || 'Add a photo';
+  img.replaceWith(ph);
 }
-switchBtns.forEach(b => b.addEventListener('click', () => showView(b.dataset.view, true)));
-document.querySelectorAll('a[data-view]').forEach(a => a.addEventListener('click', e => {
-  e.preventDefault(); showView(a.dataset.view, true);
-}));
+document.querySelectorAll('img[data-placeholder]').forEach(img => {
+  if (img.complete && img.naturalWidth === 0) makePlaceholder(img);
+  else img.addEventListener('error', () => makePlaceholder(img));
+});
+
+// ---------- Experience tabs ----------
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('is-active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('is-active'));
+    tab.classList.add('is-active');
+    document.getElementById('panel-' + tab.dataset.tab).classList.add('is-active');
+  });
+});
 
 // ---------- Gallery: clicking a thumbnail swaps it with the main image ----------
 document.querySelectorAll('.gallery').forEach(g => {
