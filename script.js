@@ -42,7 +42,7 @@ const lb = document.querySelector('.lightbox');
 const lbImg = lb.querySelector('img');
 const lbCap = lb.querySelector('.lightbox__cap');
 document.addEventListener('click', e => {
-  const img = e.target.closest('.gallery__main, .card > img, .exp__photos img, .tl--photo img');
+  const img = e.target.closest('.gallery__main, .card > img, .exp__photos img, .tl--photo img, .story__photos img, .hero__collage img');
   if (!img) return;
   lbImg.src = img.src; lbImg.alt = img.alt; lbCap.textContent = img.alt;
   lb.classList.add('is-open'); lb.setAttribute('aria-hidden', 'false');

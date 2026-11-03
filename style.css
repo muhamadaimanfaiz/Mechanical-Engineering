@@ -94,7 +94,7 @@ h2 { font-size: clamp(1.9rem, 3.6vw, 2.7rem); }
   box-shadow: 0 30px 60px -20px rgba(58,42,32,.35);
 }
 .hero__badge {
-  position: absolute; left: -18px; bottom: -6px; background: #fff; border-radius: 14px;
+  position: absolute; left: -18px; bottom: 28px; background: #fff; border-radius: 14px;
   padding: 12px 18px; box-shadow: var(--shadow); display: flex; flex-direction: column; font-size: .85rem;
 }
 .hero__badge strong { color: var(--terracotta); font-size: 1rem; }
@@ -298,4 +298,30 @@ h2 { font-size: clamp(1.9rem, 3.6vw, 2.7rem); }
   .switcher__inner { padding: 10px 12px; }
   .switcher button { padding: 9px 14px; font-size: .88rem; }
   .stat-panel strong { font-size: 1.5rem; }
+}
+
+/* ---------- Hero collage ---------- */
+.hero__collage { position: relative; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 220px 200px; gap: 14px; }
+.hero__collage figure { margin: 0; overflow: hidden; border-radius: 22px; box-shadow: 0 24px 50px -24px rgba(58,42,32,.45); }
+.hero__collage img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.hero__collage figure:hover img { transform: scale(1.05); }
+.hero__collage .c1 { grid-row: span 2; border-radius: 120px 22px 22px 22px; }
+.hero__collage .c3 { border-radius: 22px 22px 90px 22px; }
+.hero__collage .hero__badge { left: -22px; bottom: 30px; }
+
+/* ---------- Story photos ---------- */
+.story__grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 56px; align-items: start; }
+.story__photos { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; position: sticky; top: 100px; }
+.story__photos img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 18px; box-shadow: 0 18px 40px -22px rgba(58,42,32,.5); cursor: zoom-in; }
+.story__photos img:nth-child(2) { margin-top: 44px; }
+.facts li { transition: transform .2s; }
+.facts li:hover { transform: translateY(-3px); }
+@media (max-width: 960px) {
+  .hero__collage { max-width: 520px; }
+  .story__grid { grid-template-columns: 1fr; }
+  .story__photos { position: static; max-width: 520px; }
+}
+@media (max-width: 720px) {
+  .hero__collage { grid-template-rows: 150px 140px; }
+  .hero__collage .hero__badge { left: 8px; bottom: 12px; }
 }
